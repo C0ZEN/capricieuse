@@ -1,0 +1,38 @@
+{
+    "api": {
+        "baseUrl": "example.com/"
+    },
+    "deferred": {
+        "reject": {
+            "defaultCode": 200
+        }
+    },
+    "states": {
+        "main": "app"
+    },
+    "debug": {
+        "compile": true,
+        "logs": {
+            "enabled": true,
+            "enhancedColors": true,
+            "format": "[hh:mm:sss]",
+            "separator": " ",
+            "classNameBefore": "[",
+            "classNameAfter": "]",
+            "restrictedMethods": [
+                "info",
+                "warn",
+                "error",
+                "debug",
+                "log"
+            ],
+            "exceptions": {
+                "enabled": true
+            },
+            "http": {
+                "enabled": true,
+                "enhanced":true
+            }
+        }
+    }
+}
