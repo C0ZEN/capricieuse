@@ -9,6 +9,7 @@
  * @transclude false
  * @description
  *
+ * [Attrs]
  * @param {string}  cozenCompile                    > The text you want to convert
  * @param {boolean} cozenCompileRewriteHtml = false > Perform a replace of the text to avoid breaking HTML text
  *
@@ -22,10 +23,11 @@
 
     cozenCompile.$inject = [
         '$compile',
-        '$sce'
+        '$sce',
+        'testService'
     ];
 
-    function cozenCompile($compile, $sce) {
+    function cozenCompile($compile, $sce, testService) {
         return {
             link      : link,
             restrict  : 'A',
@@ -35,8 +37,15 @@
 
         function link(scope, element, attrs) {
 
-            // Default value for cozenCompileRewriteHtml
-            scope.cozenCompileRewriteHtml = angular.isDefined(attrs.cozenCompileRewriteHtml) ? JSON.parse(attrs.cozenCompileRewriteHtml) : false;
+            // Internal data
+            var data    = {
+                directive: 'cozenCompile',
+                config   : null
+            };
+            data.config = testService.getConfig(data.directive, scope, attrs);
+
+            // Default value for attr cozenCompileRewriteHtml
+            testService.setDefaultAttr(data.config, 'cozenCompileRewriteHtml', false);
 
             scope.$watch(
                 function (scope) {

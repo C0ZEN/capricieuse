@@ -53,21 +53,21 @@
                 methods.setDefaultWithShortcuts($config, $property, $defaultValue, $shortcuts);
             }
             else {
-                methods.setDefault($config, $property, $defaultValue, true);
+                methods.setDefault($config, $property, $defaultValue, true, false);
             }
         }
 
         function setDefaultAttr($config, $property, $defaultValue) {
-            methods.setDefault($config, $property, $defaultValue, false);
+            methods.setDefault($config, $property, $defaultValue, false, false);
         }
 
         /// INTERNAL METHODS ///
 
-        function setDefaultI($config, $property, $defaultValue, $scope) {
+        function setDefaultI($config, $property, $defaultValue, $scope, $required) {
 
             // Check if the value is undefined
             // If undefined, set the default value
-            if (testServiceMethods.isUndefined($config, $property)) {
+            if (testServiceMethods.isUndefined($config, $property, $required)) {
                 set();
             }
 

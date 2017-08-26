@@ -29,9 +29,12 @@
             isAttrNumber : isAttrNumber
         };
 
-        function isUndefined($config, $property) {
+        function isUndefined($config, $property, $required) {
+            if (angular.isUndefined($required)) {
+                $required = true;
+            }
             if (angular.isUndefined($config.attrs[$property])) {
-                if (config.debug.logs.test.enabled) {
+                if (config.debug.logs.test.enabled && $required === true) {
                     logsService.error.attributeIsEmpty($config.directive, $property);
                 }
                 return true;
