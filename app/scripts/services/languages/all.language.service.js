@@ -83,9 +83,9 @@
         }
 
         function findByKey($languageKey) {
+            var language = null;
 
             // Search for the language by key
-            var language = null;
             angular.forEach(config.languages.list, function ($language) {
                 if ($language.key == $languageKey) {
                     language = $language;

@@ -46,8 +46,11 @@
             "language": {
                 "enabled": true
             },
-            "test":{
-                "enabled":true
+            "test": {
+                "enabled": true
+            },
+            "theme": {
+                "enabled": true
             }
         }
     },
@@ -65,6 +68,12 @@
                 "available": true
             }
         }
+    },
+    "themes": {
+        "defaultTheme": "origin",
+        "list": [
+            "origin"
+        ]
     }
 }
         );

@@ -21,6 +21,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Now directive
 - OnNgRepeatFinish directive
 - Capitalize filter
+- Theme services (current, all)
+- Theme provider and config provider (test are OK !)
+- Theme initiator (more to do)
+- Languages
 
 ### Changed
 - Code style for services

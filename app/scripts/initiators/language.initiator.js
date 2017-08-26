@@ -16,7 +16,7 @@
 
     function languageInitiator(currentLanguageService, languageConstants, allLanguageService) {
 
-        // Force the app the set the current language
+        // Force the app to set the current language
         // On run time, currentLanguage will be set by the providers
         currentLanguageService.update(languageConstants.currentLanguage, true);
 
