@@ -11,7 +11,7 @@
  * A simple directive used to replace the image src with a default one when an error with the image was found
  * Also, you don't need to put an src or ng-src on the image
  *
- * [Attrs]
+ * [Scope]
  * @param {string} cozenAltImageSrc > Default img src
  *
  * [Attrs]

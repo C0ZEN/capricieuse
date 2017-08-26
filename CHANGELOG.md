@@ -16,6 +16,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Test directive
 - Compile directive
 - Alt image directive
+- OnBlur directive
+- OnFocus directive
+- Now directive
 
 ### Changed
 - Code style for services
