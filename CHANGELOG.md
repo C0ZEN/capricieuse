@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.0.2]
 ### Added
 - Logs utility (before angular bootstrap)
 - Utils utility (before angular bootstrap)
@@ -25,9 +27,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Theme provider and config provider (test are OK !)
 - Theme initiator (more to do)
 - Languages
+- Translations and languages grunt tasks
+- A bunch of configured provider
 
 ### Changed
 - Code style for services
+
+### Fixed
+- Http decorator
 
 ## [0.0.1]
 ### Added

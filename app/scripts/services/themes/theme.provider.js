@@ -45,6 +45,17 @@
             return this;
         };
 
+        this.logsEnabled = function ($value) {
+            if (Utils.isBoolean($value)) {
+                config.debug.logs.theme.enabled = $value;
+            }
+            else {
+                Logs.errorInProvider(data.provider);
+                Logs.dataMustBeBoolean('logsEnabled');
+            }
+            return this;
+        };
+
         this.$get = theme;
 
         theme.$inject = [];

@@ -1,5 +1,5 @@
 // jshint ignore: start
-"use strict";
+'use strict';
 
 module.exports = function (grunt) {
 
@@ -25,10 +25,10 @@ module.exports = function (grunt) {
 
         watch: {
             targets   : {
-                files  : [
+                files: [
                     '<%= paths.app %>/config/targets/*.json'
                 ],
-                tasks  : [
+                tasks: [
                     'preprocess'
                 ]
             },
@@ -115,15 +115,18 @@ module.exports = function (grunt) {
         },
 
         clean: {
-            server : '.tmp',
-            release: {
+            server   : '.tmp',
+            release  : {
                 files: [{
                     dot: true,
                     src: [
                         '.tmp'
                     ]
                 }]
-            }
+            },
+            languages: [
+                '.tmp/languages'
+            ]
         },
 
         postcss: {
@@ -161,8 +164,10 @@ module.exports = function (grunt) {
                 flow: {
                     html: {
                         steps: {
-                            js : ['concat',
-                                'uglifyjs'],
+                            js : [
+                                'concat',
+                                'uglifyjs'
+                            ],
                             css: ['cssmin:dist']
                         },
                         post : {}
@@ -335,17 +340,31 @@ module.exports = function (grunt) {
             ]
         },
 
-        "merge-json": {
-            i18n: {
+        'merge-json': {
+            merge: {
+                files: [
+                    {
+                        expand : true,
+                        flatten: false,
+                        cwd    : '<%= paths.app %>',
+                        src    : [
+                            '**/*.json',
+                            '!config/targets/*.json',
+                            '!languages/min/*.json'
+                        ],
+                        dest   : '.tmp/languages',
+                        rename : function (dest, src) {
+                            var lang = src.match(/[^/]+(?=\/[^/]+\.json$)/gim);
+                            src      = src.match(/[^/]+(.json$)/gim);
+                            return dest + '/' + lang + '/' + src;
+                        }
+                    }
+                ]
+            },
+            min: {
                 files: {
-                    '<%= paths.app %>/languages/concat/fr.concat.json': [
-                        '<%= paths.app %>/languages/fr/*.json',
-                        'bower_components/cozen-lib/release/languages/fr.concat.json'
-                    ],
-                    '<%= paths.app %>/languages/concat/en.concat.json': [
-                        '<%= paths.app %>/languages/en/*.json',
-                        'bower_components/cozen-lib/release/languages/en.concat.json'
-                    ]
+                    '<%= paths.app %>/languages/min/fr.min.json': ['.tmp/languages/fr/*.json'],
+                    '<%= paths.app %>/languages/min/en.min.json': ['.tmp/languages/en/*.json']
                 }
             }
         },
@@ -391,7 +410,7 @@ module.exports = function (grunt) {
             }
         },
 
-        less_imports: {
+        'less_imports': {
             main: {
                 options: {
                     banner: '// Auto import less files by <less_imports> grunt task',
@@ -447,10 +466,17 @@ module.exports = function (grunt) {
             'wiredep',
             'angularFileLoader',
             'less:main',
+            'languages',
             'concurrent:server',
             'postcss:server',
             'connect:livereload',
             'watch'
         ]);
     });
+
+    grunt.registerTask('languages', 'Languages task to compile the .json', [
+        'clean:languages',
+        'merge-json:merge',
+        'merge-json:min'
+    ]);
 };

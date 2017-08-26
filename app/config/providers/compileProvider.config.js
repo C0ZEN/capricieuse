@@ -15,7 +15,8 @@
 
     function compileProviderConfig($compileProvider, config) {
         $compileProvider
-            .debugInfoEnabled(config.debug.compile);
+            .debugInfoEnabled(config.debug.compile)
+            .aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):/);
     }
 
 })(window.angular);

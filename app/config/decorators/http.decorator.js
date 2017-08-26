@@ -23,6 +23,7 @@
     ];
 
     function httpDecorator($delegate, $log, config) {
+        console.log(arguments);
 
         // Log settings
         $log = $log.getInstance('httpDecorator');
@@ -32,15 +33,17 @@
             log: log
         };
 
-        // Decorator
-        return {
-            get  : get,
-            post : post,
-            put  : put,
-            patch: patch
-        };
+        $delegate.get    = getMethod;
+        $delegate.post   = postMethod;
+        $delegate.put    = putMethod;
+        $delegate.patch  = patchMethod;
+        $delegate.delete = deleteMethod;
 
-        function get($url, $config) {
+        // Decorator
+        return $delegate;
+
+        function getMethod($url, $config) {
+            console.log(arguments);
             var request = angular.extend({}, $config || {}, {
                 method: 'GET',
                 url   : $url
@@ -51,7 +54,7 @@
             return $delegate(request);
         }
 
-        function post($url, $data, $config) {
+        function postMethod($url, $data, $config) {
             var request = angular.extend({}, $config || {}, {
                 method: 'POST',
                 url   : $url,
@@ -63,7 +66,7 @@
             return $delegate(request);
         }
 
-        function put($url, $data, $config) {
+        function putMethod($url, $data, $config) {
             var request = angular.extend({}, $config || {}, {
                 method: 'PUT',
                 url   : $url,
@@ -75,11 +78,22 @@
             return $delegate(request);
         }
 
-        function patch($url, $data, $config) {
+        function patchMethod($url, $data, $config) {
             var request = angular.extend({}, $config || {}, {
                 method: 'PATCH',
                 url   : $url,
                 data  : $data
+            });
+            methods.log(request);
+
+            // Return the original method
+            return $delegate(request);
+        }
+
+        function deleteMethod($url, $config) {
+            var request = angular.extend({}, $config || {}, {
+                method: 'DELETE',
+                url   : $url
             });
             methods.log(request);
 
