@@ -46,6 +46,8 @@
                 url   : $url
             });
             methods.log(request);
+
+            // Return the original method
             return $delegate(request);
         }
 
@@ -56,6 +58,8 @@
                 data  : $data
             });
             methods.log(request);
+
+            // Return the original method
             return $delegate(request);
         }
 
@@ -66,6 +70,8 @@
                 data  : $data
             });
             methods.log(request);
+
+            // Return the original method
             return $delegate(request);
         }
 
@@ -76,16 +82,22 @@
                 data  : $data
             });
             methods.log(request);
+
+            // Return the original method
             return $delegate(request);
         }
 
         /// INTERNAL METHODS ///
 
         function log($request) {
+
+            // Common log (methods + url)
             if (config.debug.logs.http.enabled) {
-                $log.info("{method} {url}", $request);
+                $log.log('{method} {url}', $request);
+
+                // Enhanced log (data)
                 if (config.debug.logs.http.enhanced && $request.data) {
-                    $log.debug($request.data);
+                    $log.log($request.data);
                 }
             }
         }

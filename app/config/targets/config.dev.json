@@ -31,7 +31,28 @@
             },
             "http": {
                 "enabled": true,
-                "enhanced":true
+                "enhanced": true
+            },
+            "language": {
+                "enabled": true
+            },
+            "test":{
+                "enabled":true
+            }
+        }
+    },
+    "languages": {
+        "defaultLanguage": "fr",
+        "list": {
+            "fr": {
+                "label": "Français",
+                "key": "fr",
+                "available": true
+            },
+            "en": {
+                "label": "English",
+                "key": "en",
+                "available": true
             }
         }
     }

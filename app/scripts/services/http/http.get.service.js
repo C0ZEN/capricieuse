@@ -1,5 +1,10 @@
 /**
  * Created by C0ZEN on 25/08/2017.
+ *
+ * @ngdoc service
+ * @name capricieuseApp.httpGetService
+ * @description
+ *
  */
 (function (angular) {
     'use strict';
