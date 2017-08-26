@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Language initiator (more to do)
 - Test directive
 - Compile directive
+- Alt image directive
 
 ### Changed
 - Code style for services
