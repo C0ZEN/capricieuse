@@ -17,7 +17,11 @@
 
         // Logs
         $log = $log.getInstance('homeCtrl');
-        $log.log("Advanced Log Extender Example: Use Case 1: Example");
+        $log.log('Advanced Log Extender Example: Use Case 1: Example');
+
+        vm.log = function () {
+            console.log(1);
+        };
     }
 
 })(window.angular);

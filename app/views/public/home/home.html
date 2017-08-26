@@ -4,3 +4,12 @@ Hello !
 
 <img cozen-alt-image="{src:'', title:'fake'}"
      cozen-alt-image-src="'dazdazd'">
+
+<span ng-repeat="el in [0,1,2]"
+      cozen-on-ng-repeat-finish="vm.log()">
+    {{ el }}
+</span>
+
+<span cozen-now></span>
+
+<span cozen-now cozen-now-format="dd"></span>

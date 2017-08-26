@@ -19,6 +19,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - OnBlur directive
 - OnFocus directive
 - Now directive
+- OnNgRepeatFinish directive
+- Capitalize filter
 
 ### Changed
 - Code style for services

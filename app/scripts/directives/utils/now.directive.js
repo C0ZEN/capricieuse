@@ -9,6 +9,9 @@
  * @transclude false
  * @description
  *
+ * [Attrs]
+ * @param {string} cozenNowFormat = moment > Override the default date format
+ *
  */
 (function (angular) {
     'use strict';
@@ -18,10 +21,11 @@
         .directive('cozenNow', cozenNow);
 
     cozenNow.$inject = [
-        '$filter'
+        '$filter',
+        'moment'
     ];
 
-    function cozenNow($filter) {
+    function cozenNow($filter, moment) {
         return {
             link      : link,
             restrict  : 'A',
@@ -30,7 +34,7 @@
         };
 
         function link(scope, element, attrs) {
-            element.text($filter('capitalize')($filter('date')(new Date(), attrs.dateNow), true, true));
+            element.text($filter('capitalize')($filter('date')(moment().format(attrs.cozenNowFormat)), true, true));
         }
     }
 })(window.angular);

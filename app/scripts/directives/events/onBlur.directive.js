@@ -20,9 +20,11 @@
         .module('capricieuseApp')
         .directive('cozenOnBlur', cozenOnBlur);
 
-    cozenOnBlur.$inject = [];
+    cozenOnBlur.$inject = [
+        '$timeout'
+    ];
 
-    function cozenOnBlur() {
+    function cozenOnBlur($timeout) {
         return {
             link      : link,
             restrict  : 'A',
@@ -32,8 +34,8 @@
 
         function link(scope, element, attrs) {
             element.bind('blur', function ($event) {
-                scope.$apply(function () {
-                    scope.$eval(attrs['cozenOnBlur']);
+                $timeout(function () {
+                    scope.$eval(attrs.cozenOnBlur);
                 });
             });
         }

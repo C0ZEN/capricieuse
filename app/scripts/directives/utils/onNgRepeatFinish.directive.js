@@ -2,7 +2,7 @@
  * Created by C0ZEN on 26/08/2017.
  *
  * @ngdoc directive
- * @name cozen-on-focus
+ * @name cozen-on-ng-repeat-finish
  * @scope
  * @restrict A
  * @replace false
@@ -10,7 +10,7 @@
  * @description
  *
  * [Attrs]
- * @param {function} cozenOnFocus > Callback function called on focus
+ * @param {function} cozenOnNgRepeatFinish > Callback function called on finish
  *
  */
 (function (angular) {
@@ -18,14 +18,15 @@
 
     angular
         .module('capricieuseApp')
-        .directive('cozenOnFocus', cozenOnFocus);
+        .directive('cozenOnNgRepeatFinish', cozenOnNgRepeatFinish);
 
-    cozenOnFocus.$inject = [
+    cozenOnNgRepeatFinish.$inject = [
         '$timeout'
     ];
 
-    function cozenOnFocus($timeout) {
+    function cozenOnNgRepeatFinish($timeout) {
         return {
+            required  : 'ngRepeat',
             link      : link,
             restrict  : 'A',
             replace   : false,
@@ -33,11 +34,13 @@
         };
 
         function link(scope, element, attrs) {
-            element.bind('focus', function ($event) {
+
+            // Check if the current element is the last
+            if (scope.$last === true) {
                 $timeout(function () {
-                    scope.$eval(attrs.cozenOnFocus);
+                    scope.$eval(attrs.cozenOnNgRepeatFinish);
                 });
-            });
+            }
         }
     }
 
