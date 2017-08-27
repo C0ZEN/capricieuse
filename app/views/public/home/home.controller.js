@@ -6,22 +6,32 @@
 
     angular
         .module('capricieuseApp')
-        .controller('homeCtrl', homeCtrl);
+        .controller('homeController', homeController);
 
-    homeCtrl.$inject = [
-        '$log'
+    homeController.$inject = [
+        '$log',
+        '$timeout'
     ];
 
-    function homeCtrl($log) {
+    function homeController($log, $timeout) {
         var vm = this;
 
         // Logs
-        $log = $log.getInstance('homeCtrl');
+        $log = $log.getInstance('homeController');
         $log.log('Advanced Log Extender Example: Use Case 1: Example');
 
-        vm.log = function () {
-            console.log(1);
+        vm.log = function ($data) {
+            if (angular.isUndefined($data)) {
+                $data = 1;
+            }
+            console.log($data);
         };
+
+        vm.hello = 'hello !';
+
+        $timeout(function () {
+            vm.hello = 'hello you too !';
+        }, 2000);
     }
 
 })(window.angular);

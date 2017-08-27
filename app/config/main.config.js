@@ -74,6 +74,11 @@
         "list": [
             "origin"
         ]
+    },
+    "directives": {
+        "btn": {
+            "debug": true
+        }
     }
 }
         );

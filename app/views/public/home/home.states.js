@@ -17,7 +17,7 @@
             parent      : 'public',
             url         : '/home',
             templateUrl : 'views/public/home/home.html',
-            controller  : 'homeCtrl',
+            controller  : 'homeController',
             controllerAs: 'vm',
             data        : {
                 pageTitle: 'home'

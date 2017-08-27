@@ -38,7 +38,7 @@
 
             // Log
             if (config.debug.logs.exceptions.enabled) {
-                $log.error('Exception {exception} caused by {cause}', exception);
+                $log.error('Exception caused by {cause}', exception);
             }
 
             // Return the original method

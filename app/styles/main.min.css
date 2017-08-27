@@ -1,0 +1,9 @@
+body.origin .cozen-btn {
+  outline: none;
+}
+body.origin .cozen-btn > .label {
+  padding: 0;
+  margin: 0;
+  line-height: normal;
+  color: grey;
+}

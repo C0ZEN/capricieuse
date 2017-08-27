@@ -12,6 +12,11 @@ Hello !
 
 <span cozen-now></span>
 
-<span cozen-now cozen-now-format="dd"></span>
+<span cozen-now
+      cozen-now-format="dd"></span>
 
 {{ 'COMMON.HELLO' | translate }}
+
+<cozen-btn cozen-btn-label="{{ vm.hello }}"
+           cozen-btn-on-click="vm.log()">
+</cozen-btn>

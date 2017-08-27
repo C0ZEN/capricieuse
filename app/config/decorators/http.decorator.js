@@ -23,7 +23,6 @@
     ];
 
     function httpDecorator($delegate, $log, config) {
-        console.log(arguments);
 
         // Log settings
         $log = $log.getInstance('httpDecorator');
@@ -33,6 +32,7 @@
             log: log
         };
 
+        // Override some methods of the http service
         $delegate.get    = getMethod;
         $delegate.post   = postMethod;
         $delegate.put    = putMethod;
@@ -43,7 +43,6 @@
         return $delegate;
 
         function getMethod($url, $config) {
-            console.log(arguments);
             var request = angular.extend({}, $config || {}, {
                 method: 'GET',
                 url   : $url

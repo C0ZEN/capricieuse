@@ -395,7 +395,7 @@ module.exports = function (grunt) {
                     ]
                 },
                 files  : [
-                    {'<%= paths.app %>/styles/main.min.css': '<%= paths.app %>/styles/import.less'}
+                    {'<%= paths.app %>/styles/main.min.css': '<%= paths.app %>/styles/less/main.less'}
                 ]
             },
             release: {

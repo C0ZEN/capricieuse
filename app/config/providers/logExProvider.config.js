@@ -24,7 +24,7 @@
             var classNameAfter  = config.debug.logs.classNameAfter;
             var format          = config.debug.logs.format;
             var now             = $filter('date')(new Date(), format);
-            return '' + now + (!angular.isString(className) ? '' : classNameBefore + className + classNameAfter) + separator;
+            return '' + now + (!angular.isString(className) ? '' : classNameBefore + className + classNameAfter + separator);
         });
         logExProvider.restrictLogMethods(config.debug.logs.restrictedMethods);
         logExProvider.useTemplates(true);

@@ -14,10 +14,11 @@
         .factory('logsErrorService', logsErrorService);
 
     logsErrorService.$inject = [
-        '$log'
+        '$log',
+        'logsServiceMethods'
     ];
 
-    function logsErrorService($log) {
+    function logsErrorService($log, logsServiceMethods) {
 
         // Public methods
         return {
@@ -28,55 +29,60 @@
             attributeIsNotNumber : attributeIsNotNumber
         };
 
-        function valueNotInList($target, $value, $list) {
-            if (Utils.isNullOrEmpty($target) || Utils.isNullOrEmpty($value) || Utils.isNullOrEmpty($list)) {
-                return;
+        function valueNotInList($target, $value, $list, $enabled) {
+            if ($enabled === true) {
+                if (Utils.isNullOrEmpty($target) || Utils.isNullOrEmpty($value) || Utils.isNullOrEmpty($list)) {
+                    return;
+                }
+                $log.error(logsServiceMethods.getInstance($target) + '<{value}> must be a value from the list <{list}>', {
+                    value: $value,
+                    list : $list
+                });
             }
-            $log = $log.getInstance($target);
-            $log.error('<{value}> must be a value from the list <{list}>', {
-                value: $value,
-                list : $list
-            });
         }
 
-        function attributeIsEmpty($target, $attribute) {
-            if (Utils.isNullOrEmpty($target) || Utils.isNullOrEmpty($attribute)) {
-                return;
+        function attributeIsEmpty($target, $attribute, $enabled) {
+            if ($enabled === true) {
+                if (Utils.isNullOrEmpty($target) || Utils.isNullOrEmpty($attribute)) {
+                    return;
+                }
+                $log.error(logsServiceMethods.getInstance($target) + 'Attr <{attr}> is null', {
+                    attr: $attribute
+                });
             }
-            $log = $log.getInstance($target);
-            $log.error('Attr <{attr}> is null', {
-                attr: $attribute
-            });
         }
 
-        function attributeIsNotString($target, $attribute) {
-            if (Utils.isNullOrEmpty($target) || Utils.isNullOrEmpty($attribute)) {
-                return;
+        function attributeIsNotString($target, $attribute, $enabled) {
+            if ($enabled === true) {
+                if (Utils.isNullOrEmpty($target) || Utils.isNullOrEmpty($attribute)) {
+                    return;
+                }
+                $log.error(logsServiceMethods.getInstance($target) + 'Attr <{attr}> is not a string', {
+                    attr: $attribute
+                });
             }
-            $log = $log.getInstance($target);
-            $log.error('Attr <{attr}> is not a string', {
-                attr: $attribute
-            });
         }
 
-        function attributeIsNotBoolean($target, $attribute) {
-            if (Utils.isNullOrEmpty($target) || Utils.isNullOrEmpty($attribute)) {
-                return;
+        function attributeIsNotBoolean($target, $attribute, $enabled) {
+            if ($enabled === true) {
+                if (Utils.isNullOrEmpty($target) || Utils.isNullOrEmpty($attribute)) {
+                    return;
+                }
+                $log.error(logsServiceMethods.getInstance($target) + 'Attr <{attr}> is not a boolean', {
+                    attr: $attribute
+                });
             }
-            $log = $log.getInstance($target);
-            $log.error('Attr <{attr}> is not a boolean', {
-                attr: $attribute
-            });
         }
 
-        function attributeIsNotNumber($target, $attribute) {
-            if (Utils.isNullOrEmpty($target) || Utils.isNullOrEmpty($attribute)) {
-                return;
+        function attributeIsNotNumber($target, $attribute, $enabled) {
+            if ($enabled === true) {
+                if (Utils.isNullOrEmpty($target) || Utils.isNullOrEmpty($attribute)) {
+                    return;
+                }
+                $log.error(logsServiceMethods.getInstance($target) + 'Attr <{attr}> is not a number', {
+                    attr: $attribute
+                });
             }
-            $log = $log.getInstance($target);
-            $log.error('Attr <{attr}> is not a number', {
-                attr: $attribute
-            });
         }
 
     }

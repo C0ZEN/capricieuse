@@ -77,7 +77,7 @@
 
                 // Listeners
                 element.on('$destroy', methods.destroy);
-                scope.$on('$destroy', methods.destroy);
+                data.listeners.push(scope.$on('$destroy', methods.destroy));
             }
 
             function destroy() {

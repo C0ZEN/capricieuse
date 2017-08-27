@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.0.3]
+### Added
+- First directive as model (btn)
+- Structure for ui directive theme and languages
+- Listeners for scope.$on
+
+### Changed
+- The way to use the logService (required to avoid error)
+- Grunt task to handle the theme generator
+
 ## [0.0.2]
 ### Added
 - Logs utility (before angular bootstrap)

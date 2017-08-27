@@ -14,22 +14,39 @@
         .factory('logsInfoService', logsInfoService);
 
     logsInfoService.$inject = [
-        '$log'
+        '$log',
+        'logsServiceMethods'
     ];
 
-    function logsInfoService($log) {
+    function logsInfoService($log, logsServiceMethods) {
 
         // Public methods
         return {
-            setDefaultAttrValue: setDefaultAttrValue
+            setDefaultAttrValue: setDefaultAttrValue,
+            functionCalled     : functionCalled
         };
 
-        function setDefaultAttrValue($service, $attr, $value) {
-            if (Utils.isNullOrEmpty($service) || Utils.isNullOrEmpty($attr) || Utils.isNullOrEmpty($value)) {
-                return;
+        function setDefaultAttrValue($service, $attr, $value, $enabled) {
+            if ($enabled === true) {
+                if (Utils.isNullOrEmpty($service) || Utils.isNullOrEmpty($attr) || Utils.isNullOrEmpty($value)) {
+                    return;
+                }
+                $log.info(logsServiceMethods.getInstance($service) + 'Set default value <{$value}> for attr <{$attr}>', {
+                    $attr : $attr,
+                    $value: $value
+                });
             }
-            $log = $log.getInstance($service);
-            $log.info('Set default value <{$value}> for attr <{$attr}>', arguments);
+        }
+
+        function functionCalled($service, $function, $enabled) {
+            if ($enabled === true) {
+                if (Utils.isNullOrEmpty($service) || Utils.isNullOrEmpty($function)) {
+                    return;
+                }
+                $log.info(logsServiceMethods.getInstance($service) + '<{$function}> called', {
+                    $function: $function
+                });
+            }
         }
     }
 
